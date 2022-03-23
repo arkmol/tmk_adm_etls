@@ -7,4 +7,4 @@ This is a temporary script file.
 
 import pandas
 
-print("witaj ")
+print("witaj óążżźółęćńĄŻŻŹ")
