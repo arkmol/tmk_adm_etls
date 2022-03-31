@@ -6,7 +6,7 @@ Created on Mon Mar 28 16:19:13 2022
 """
 
 
-def Whitespace_remover(dataframe):
+def WhitespaceRemover(dataframe):
     # iterating over the columns
     for i in dataframe.columns:
         # checking datatype of each columns
