@@ -1,4 +1,10 @@
 BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "Population" (
+	"id"	INTEGER,
+	"country"	TEXT,
+	"population"	INT,
+	PRIMARY KEY("id")
+);
 CREATE TABLE IF NOT EXISTS "dic_affinities" (
 	"Kategoria"	TEXT NOT NULL UNIQUE,
 	"Kod kategorii"	TEXT NOT NULL UNIQUE,
@@ -84,43 +90,14 @@ CREATE TABLE IF NOT EXISTS "fct_calls" (
 	"ImiePotwierdzone"	TEXT,
 	"ImportId"	INTEGER,
 	"ImportCreatedOn"	TIMESTAMP,
-	PRIMARY KEY("ID" AUTOINCREMENT),
-	UNIQUE("TELEFON1","campcd") ON CONFLICT IGNORE
+	UNIQUE("TELEFON1","campcd") ON CONFLICT IGNORE,
+	PRIMARY KEY("ID" AUTOINCREMENT)
 );
-CREATE TABLE IF NOT EXISTS "fct_calls2" (
-	"ID"	INT,
-	"RecordState"	TEXT,
-	"LastCallCode"	TEXT,
-	"LastTryTime"	NUM,
-	"TELEFON2"	TEXT,
-	"TELEFON1"	TEXT,
-	"TELEFON4"	TEXT,
-	"TELEFON3"	TEXT,
-	"Source"	TEXT,
-	"LastName"	TEXT,
-	"FirstName"	TEXT,
-	"CustomerBusiness_Id"	TEXT,
-	"PKD"	TEXT,
-	"OPIS"	TEXT,
-	"Wojewodztwo"	TEXT,
-	"ApartmentNumber"	TEXT,
-	"HouseNumber"	TEXT,
-	"ZipCode"	TEXT,
-	"Street"	TEXT,
-	"City"	TEXT,
-	"CompanyName"	TEXT,
-	"mrktcd"	TEXT,
-	"campcd"	TEXT,
-	"DataGodzinaKontaktu"	TEXT,
-	"EmailPotwierdzony"	TEXT,
-	"ImieNazwiskoPotwierdzone"	TEXT,
-	"MiastoPotwierdzone"	TEXT,
-	"WybranyDealer"	TEXT,
-	"TelefonPotwierdzony"	TEXT,
-	"NazwiskoPotwierdzone"	TEXT,
-	"ImiePotwierdzone"	TEXT,
-	"ImportId"	INT,
-	"ImportCreatedOn"	NUM
+CREATE INDEX IF NOT EXISTS "idx_fct_calls_telefon1" ON "fct_calls" (
+	"TELEFON1"	ASC
+);
+CREATE INDEX IF NOT EXISTS "idx_fct_calls_campcd" ON "fct_calls" (
+	"campcd"
 );
 CREATE TRIGGER fct_calls_before_insert 
   BEFORE INSERT ON fct_calls
