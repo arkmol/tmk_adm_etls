@@ -14,7 +14,7 @@ import os
 from my_functions import WhitespaceRemover
 import my_init as myi
 from datetime import datetime
-from itertools import cycle
+# from itertools import cycle
 
 
 
@@ -31,25 +31,23 @@ converters_dict = dict(df_dic_xls_marked_cols.values)
 
 
 
+conn = s3.connect(myi.db_dir + myi.db_name)
 
-
+cur = conn.cursor()
 uf_files_2_proc = []
 for file in os.listdir(myi.uf_exports_dir):
     if file.endswith(".xls") or file.endswith(".xlsx"):
-        print(os.path.join(file))
-        uf_files_2_proc.append(file)
+        # print(os.path.join(file))
+        cur.execute("SELECT fileName FROM log_hist WHERE fileName = '" + file + "';")
+        processed_files = cur.fetchall()
+        if not processed_files:
+                print ('not found and add to process: ' + file)
+                uf_files_2_proc.append(file)
+        else:
+                print ('found: ' + file)
 # uf_files_2_proc.append("Ecport_2022.03.23.xlsx")
 # uf_files_2_proc.append("163 Land Rover_Kampania wsparciowa.xlsx")
-
-lst_load_date =  [datetime.now()]
-lst_zip = zip(uf_files_2_proc, cycle(lst_load_date))
-df_uf_files_2_proc = pd.DataFrame(lst_zip, columns=['fileName', 'loadDate'])
-
-
-conn = s3.connect(myi.db_dir + myi.db_name)
-
-
-df_uf_files_2_proc.to_sql('log_hist', conn, if_exists='append')
+cur.close()
 
 for index, i  in enumerate(uf_files_2_proc):
     starttm = time.time()
@@ -94,7 +92,18 @@ for index, i  in enumerate(uf_files_2_proc):
     df_f1_filtered.to_sql('fct_calls', conn, if_exists='append', index=False, chunksize=10000)
     endtm = time.time()
     print("df1_to_sql: " + uf_files_2_proc[index] + " - " + str(timedelta(seconds=endtm - starttm)))
-    
     conn.commit()
+    
+    #insert processed fileName into log table
+    cur = conn.cursor()
+    sqlite_insert_with_param = """INSERT INTO log_hist
+                          ('fileName', 'loadDate') 
+                          VALUES (?, ?);"""
+
+    data_tuple = (uf_files_2_proc[index], datetime.now())
+    cur.execute(sqlite_insert_with_param, data_tuple)
+    conn.commit()
+    cur.close()
+    
     
 conn.close()

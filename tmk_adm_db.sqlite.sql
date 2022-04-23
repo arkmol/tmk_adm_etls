@@ -1,10 +1,4 @@
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Population" (
-	"id"	INTEGER,
-	"country"	TEXT,
-	"population"	INT,
-	PRIMARY KEY("id")
-);
 CREATE TABLE IF NOT EXISTS "dic_affinities" (
 	"Kategoria"	TEXT NOT NULL UNIQUE,
 	"Kod kategorii"	TEXT NOT NULL UNIQUE,
@@ -90,14 +84,23 @@ CREATE TABLE IF NOT EXISTS "fct_calls" (
 	"ImiePotwierdzone"	TEXT,
 	"ImportId"	INTEGER,
 	"ImportCreatedOn"	TIMESTAMP,
-	UNIQUE("TELEFON1","campcd") ON CONFLICT IGNORE,
-	PRIMARY KEY("ID" AUTOINCREMENT)
+	PRIMARY KEY("ID" AUTOINCREMENT),
+	UNIQUE("TELEFON1","campcd") ON CONFLICT IGNORE
+);
+CREATE TABLE IF NOT EXISTS "log_hist" (
+	"id"	INTEGER NOT NULL,
+	"fileName"	TEXT,
+	"loadDate"	TIMESTAMP,
+	PRIMARY KEY("id" AUTOINCREMENT)
 );
 CREATE INDEX IF NOT EXISTS "idx_fct_calls_telefon1" ON "fct_calls" (
 	"TELEFON1"	ASC
 );
 CREATE INDEX IF NOT EXISTS "idx_fct_calls_campcd" ON "fct_calls" (
 	"campcd"
+);
+CREATE INDEX IF NOT EXISTS "ix_log_hist_index" ON "log_hist" (
+	"id"
 );
 CREATE TRIGGER fct_calls_before_insert 
   BEFORE INSERT ON fct_calls
