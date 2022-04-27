@@ -90,6 +90,7 @@ CREATE TABLE IF NOT EXISTS "fct_calls" (
 CREATE TABLE IF NOT EXISTS "log_hist" (
 	"id"	INTEGER NOT NULL,
 	"fileName"	TEXT,
+	"insertedRows"	INTEGER,
 	"loadDate"	TIMESTAMP,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
@@ -189,5 +190,86 @@ BEGIN
 	AND campcd = NEW.campcd
 	AND LastTryTime < NEW.LastTryTime;
 
+END;
+CREATE TRIGGER fct_calls_before_update 
+  BEFORE UPDATE ON fct_calls
+
+BEGIN	
+	INSERT INTO hist_fct_calls(
+		ID,
+		user_action,
+		created_at,
+		RecordState,
+		LastCallCode,
+		LastTryTime,
+		TELEFON2,
+		TELEFON1,
+		TELEFON4,
+		TELEFON3,
+		Source,
+		LastName,
+		FirstName,
+		CustomerBusiness_Id,
+		PKD,
+		OPIS,
+		Wojewodztwo,
+		ApartmentNumber,
+		HouseNumber,
+		ZipCode,
+		Street,
+		City,
+		CompanyName,
+		mrktcd,
+		campcd,
+		DataGodzinaKontaktu,
+		EmailPotwierdzony,
+		ImieNazwiskoPotwierdzone,
+		MiastoPotwierdzone,
+		WybranyDealer,
+		TelefonPotwierdzony,
+		NazwiskoPotwierdzone,
+		ImiePotwierdzone,
+		ImportId,
+		ImportCreatedOn
+	)
+	SELECT
+		ID,
+		'U',
+		DATETIME('NOW'),
+		RecordState,
+		LastCallCode,
+		LastTryTime,
+		TELEFON2,
+		TELEFON1,
+		TELEFON4,
+		TELEFON3,
+		Source,
+		LastName,
+		FirstName,
+		CustomerBusiness_Id,
+		PKD,
+		OPIS,
+		Wojewodztwo,
+		ApartmentNumber,
+		HouseNumber,
+		ZipCode,
+		Street,
+		City,
+		CompanyName,
+		mrktcd,
+		campcd,
+		DataGodzinaKontaktu,
+		EmailPotwierdzony,
+		ImieNazwiskoPotwierdzone,
+		MiastoPotwierdzone,
+		WybranyDealer,
+		TelefonPotwierdzony,
+		NazwiskoPotwierdzone,
+		ImiePotwierdzone,
+		ImportId,
+		ImportCreatedOn
+	FROM fct_calls
+	WHERE TELEFON1=NEW.TELEFON1 
+	AND campcd=NEW.campcd;
 END;
 COMMIT;

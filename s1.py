@@ -14,7 +14,22 @@ import os
 from my_functions import WhitespaceRemover
 import my_init as myi
 from datetime import datetime
+# import logging
 # from itertools import cycle
+
+# logging.basicConfig(filename=myi.main_dir + "logfile.log",
+#                     format='%(levelname)s -  %(message)s',
+#                     filemode='w')
+
+# # Creating an object
+# logger = logging.getLogger()
+ 
+# # Setting the threshold of logger to DEBUG
+# logger.setLevel(logging.DEBUG)
+
+# logger.debug("my debug message")
+
+
 
 
 
@@ -70,7 +85,10 @@ for index, i  in enumerate(uf_files_2_proc):
     print("df1: " + str(timedelta(seconds=endtm - starttm)))
     df_f1.to_feather(myi.uf_exports_temp_dir + uf_files_2_proc[index].rpartition('.')[0] + ".feather")
     
-    q1 = """SELECT t1.* FROM df_f1 AS t1 where t1.campcd is not null and t1.TELEFON1 is not null;"""
+    q1 = """SELECT t1.* FROM df_f1 AS t1 
+            WHERE t1.campcd is not null 
+            AND t1.TELEFON1 is not null
+            AND LastTryTime is not null;"""
     # q1 = """SELECT t1.* FROM df_f1 AS t1 
     #         inner join
     #             (SELECT campcd, TELEFON1, MAX(LastTryTime) as max_LastTryTime
@@ -97,10 +115,10 @@ for index, i  in enumerate(uf_files_2_proc):
     #insert processed fileName into log table
     cur = conn.cursor()
     sqlite_insert_with_param = """INSERT INTO log_hist
-                          ('fileName', 'loadDate') 
-                          VALUES (?, ?);"""
+                          ('fileName', 'loadDate', insertedRows) 
+                          VALUES (?, ?, ?);"""
 
-    data_tuple = (uf_files_2_proc[index], datetime.now())
+    data_tuple = (uf_files_2_proc[index], datetime.now(), len(df_f1_filtered))
     cur.execute(sqlite_insert_with_param, data_tuple)
     conn.commit()
     cur.close()
