@@ -11,7 +11,7 @@ import time
 from datetime import timedelta
 import pandasql as ps
 import os
-from my_functions import WhitespaceRemover
+from my_functions import WhitespaceRemover, PhoneNumberCleaner
 import my_init as myi
 from datetime import datetime
 # import logging
@@ -81,6 +81,8 @@ for index, i  in enumerate(uf_files_2_proc):
     #                       usecols = df_dic_xls_marked_cols['column_name'], dtype=converters_dict)
     WhitespaceRemover(df_f1)
     print("WhitespaceRemover file processed: " + uf_files_2_proc[index])
+    PhoneNumberCleaner(df_f1)
+
     endtm = time.time()
     print("df1: " + str(timedelta(seconds=endtm - starttm)))
     df_f1.to_feather(myi.uf_exports_temp_dir + uf_files_2_proc[index].rpartition('.')[0] + ".feather")

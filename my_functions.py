@@ -17,3 +17,11 @@ def WhitespaceRemover(dataframe):
         else:
             # if condn. is False then it will do nothing.
             pass
+
+
+def PhoneNumberCleaner(dataframe):
+    column_list = ('TELEFON1', 'TELEFON2', 'TELEFON3', 'TELEFON4', 'TELEFON5')
+    for col in column_list:
+        if col in dataframe.columns:
+            dataframe[col].where(~(dataframe[col].notna() ), other = dataframe[col].astype(str).str.replace(' ','').str[-9:], inplace=True)
+
