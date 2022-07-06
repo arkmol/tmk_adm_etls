@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['s1.py', 'my_functions.py', 'my_init.py', 'load_dict_data.py', 'config.cfg', 's1_e.py', 'my_init_e.py']
+recent_files = ['s1.py', 'my_functions.py', 'my_init.py', 'load_dict_data.py', 'config.ini']
 
 [main]
 version = 0.2.0

@@ -87,10 +87,14 @@ for index, i  in enumerate(uf_files_2_proc):
     print("df1: " + str(timedelta(seconds=endtm - starttm)))
     df_f1.to_feather(myi.uf_exports_temp_dir + uf_files_2_proc[index].rpartition('.')[0] + ".feather")
     
-    q1 = """SELECT t1.* FROM df_f1 AS t1 
-            WHERE t1.campcd is not null 
-            AND t1.TELEFON1 is not null
-            AND LastTryTime is not null;"""
+    
+    q1 = """
+            SELECT t1.*, iif(t1.campcd is null, 'aa_' || ImportId, campcd) as campcd_mod
+            FROM df_f1 AS t1 
+            WHERE 
+                 t1.TELEFON1 is not null
+                AND LastTryTime is not null
+        ;"""
     # q1 = """SELECT t1.* FROM df_f1 AS t1 
     #         inner join
     #             (SELECT campcd, TELEFON1, MAX(LastTryTime) as max_LastTryTime
@@ -103,6 +107,8 @@ for index, i  in enumerate(uf_files_2_proc):
     #         WHERE t1.campcd is not null 
     #         AND t1.TELEFON1 is not null;"""
     df_f1_filtered = ps.sqldf(q1, locals())
+    del df_f1_filtered['campcd']
+    df_f1_filtered = df_f1_filtered.rename(columns = {"campcd_mod":"campcd"})
     stats = df_f1_filtered["campcd"].value_counts()
     aa=df_f1_filtered.dtypes
     

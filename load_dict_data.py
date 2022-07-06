@@ -8,7 +8,7 @@ import sqlite3 as s3
 import pandas as pd
 import time
 from datetime import timedelta
-import my_init_e as myi
+import my_init as myi
 from my_functions import WhitespaceRemover
 
 df_xls_marked_columns = pd.read_excel(myi.dict_dir + myi.dict_xlsx, sheet_name='xls_marked_columns')
