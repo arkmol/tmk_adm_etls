@@ -14,6 +14,11 @@ import os
 from my_functions import WhitespaceRemover, PhoneNumberCleaner
 import my_init as myi
 from datetime import datetime
+import itertools
+import threading
+import sys
+
+
 
 
 try:
@@ -54,6 +59,24 @@ try:
     for index, i  in enumerate(uf_files_2_proc):
         print('\n' * 1)
         print('start processing file:' + uf_files_2_proc[index])
+        
+        #animation start 
+        #===============
+        animation_done = False
+        #here is the animation
+        def animate():
+            for c in itertools.cycle(['|', '/', '-', '\\']):
+                if animation_done:
+                    break
+                sys.stdout.write('\rprocessing ' + c)
+                sys.stdout.flush()
+                time.sleep(0.1)
+            sys.stdout.write('                 ')
+
+        t = threading.Thread(target = animate)
+        t.start()
+        #===============
+        
         starttm = time.time()
         #read all Excel columns
         df_f0_tmp = pd.read_excel(myi.uf_exports_dir +  uf_files_2_proc[index], sheet_name = None, 
@@ -63,9 +86,14 @@ try:
         # print(df_f0_tmp[k_list[0]].head())
         df_f0 = df_f0_tmp[k_list[0]]
         if not 'TELEFON1' in df_f0.columns:
-            df_f0.columns = df_f0.columns.str.replace('Phone', 'TELEFON')
-        # aa=df_f0.dtypes
-        # result = pd.concat([df_fact_tbl_structure, df_f0], axis=0, ignore_index=True)
+            df_f0.columns = df_f0.columns.str.replace('Phone', 'TELEFON')    
+        endtm = time.time()
+        print("    df1: " + str(timedelta(seconds = endtm - starttm)))
+            
+        #end long process that has been animated
+        #===============
+        animation_done = True
+        #===============
         
         #compare columns between schema and currentprocessing file
         f0_temp = []
@@ -73,20 +101,16 @@ try:
         dict_cols = pd.DataFrame(f0_temp, columns = xls_marked_columns).columns
         dict_not_processed = dict_cols.difference(processed_xls_cols).tolist()
         if len(dict_not_processed):
-            print('    the file being processed does not contain all the columns of the pattern:')
-            print("         ", dict_not_processed)
             print('\n' * 1)
+            print('the file being processed does not contain all the columns of the pattern:')
+            print("   ", dict_not_processed)
+            print('\n' * 1)
+            proceed = input("Do you want to continue? [y/n]").lower().strip()
+            print('user chose:',proceed)
+            if proceed != "y":
+                break;
         
-        
-        # fields_2_rename = ('Phone1','Phone2','Phone3','Phone4')
-        # counter = 0
-        # for i in fields_2_rename:
-        #     counter += 1
-        #     if i in df_f0.columns: 
-        #         print(i,counter)
-        #         df_f0_rename = df_f0.rename({i: 'TELEFON' + str(counter)}, axis = 1, inplace = True)
-
-        
+    
         #create main dataframe with data structure redy to load
         df_f1 = pd.DataFrame(df_f0, columns = xls_marked_columns)
         
@@ -95,11 +119,7 @@ try:
         print("    WhitespaceRemover file processed: " + uf_files_2_proc[index])
         PhoneNumberCleaner(df_f1)
         print("    PhoneNumberCleaner file processed: " + uf_files_2_proc[index])
-        endtm = time.time()
-        print("    df1: " + str(timedelta(seconds = endtm - starttm)))
 
-        
-        
 
         #insert processed fileName into log table
         cur = conn.cursor()
@@ -113,11 +133,6 @@ try:
         last_inserted_log_id = cur.lastrowid
         cur.close()
         
-        # df_q_log = pd.read_sql('SELECT max(id) as lastInsrtedId FROM log_hist', conn)
-        # df_q_log = df_q_log.astype({'lastInsrtedId':'int'})
-        # last_inserted_log_id = df_q_log.at[0,"lastInsrtedId"]
-        # last_inserted_log_id.astype(numpy.int32)
-        # q_log.loc[0].iat[1]
         alternative_campcd = uf_files_2_proc[index].split(' ', 2)[0]
         q1 = """
                 SELECT t1.*, 
@@ -127,17 +142,7 @@ try:
                      t1.TELEFON1 is not null
                     AND LastTryTime is not null
             ;"""
-        # q1 = """SELECT t1.* FROM df_f1 AS t1 
-        #         inner join
-        #             (SELECT campcd, TELEFON1, MAX(LastTryTime) as max_LastTryTime
-        #               FROM df_f1
-        #               GROUP BY campcd, TELEFON1
-        #               ) AS t2
-        #         ON t1.TELEFON1 = t2.TELEFON1
-        #         AND t1.LastTryTime = t2.max_LastTryTime
-        #         AND t1.campcd = t2.campcd
-        #         WHERE t1.campcd is not null 
-        #         AND t1.TELEFON1 is not null;"""
+
         df_f1_filtered = ps.sqldf(q1, locals())
         del df_f1_filtered['campcd']
         df_f1_filtered = df_f1_filtered.rename(columns = {"campcd_mod":"campcd"})
@@ -146,9 +151,9 @@ try:
     
         #append data into db table
         starttm = time.time()
-        df_f1_filtered.to_sql('fct_calls', conn, if_exists='append', index=False, chunksize=10000)
+        df_f1_filtered.to_sql('fct_calls', conn, if_exists='append', index=False, chunksize = 10000)
         endtm = time.time()
-        print("    df1_to_sql: " + uf_files_2_proc[index] + " - " + str(timedelta(seconds=endtm - starttm))) 
+        print("    df1_to_sql: " + uf_files_2_proc[index] + " - " + str(timedelta(seconds = endtm - starttm))) 
         conn.commit()
         
         
@@ -169,9 +174,9 @@ try:
                 print("      column: TELEFON1 is empty")
             if len(pd.unique(df_f1['LastTryTime'])) == 1:
                 print("      column: LastTryTime is empty")
-            
-
-        
+                  
+    
+    input("Press Enter to exit...")
         
 # Handle errors
 except s3.Error as error:
