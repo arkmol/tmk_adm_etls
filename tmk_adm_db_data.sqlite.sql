@@ -25,6 +25,19 @@ CREATE TABLE IF NOT EXISTS "dic_xls_marked_columns" (
 	"target_schema"	INTEGER,
 	PRIMARY KEY("column_name")
 );
+DROP TABLE IF EXISTS "dim_campcd_affinity";
+CREATE TABLE IF NOT EXISTS "dim_campcd_affinity" (
+	"campcd"	TEXT NOT NULL,
+	"kategoria"	TEXT,
+	"kod_kategorii"	TEXT,
+	PRIMARY KEY("campcd")
+);
+DROP TABLE IF EXISTS "dim_call_code";
+CREATE TABLE IF NOT EXISTS "dim_call_code" (
+	"call_code"	TEXT NOT NULL,
+	"clean_call_code"	TEXT,
+	PRIMARY KEY("call_code")
+);
 INSERT INTO "dic_affinities" ("Kategoria","Kod kategorii") VALUES ('Alkohole','AL');
 INSERT INTO "dic_affinities" ("Kategoria","Kod kategorii") VALUES ('Budownictwo','BU');
 INSERT INTO "dic_affinities" ("Kategoria","Kod kategorii") VALUES ('Developerzy','DE');
@@ -214,23 +227,525 @@ INSERT INTO "dic_xls_marked_columns" ("column_name","column_type","target_schema
 INSERT INTO "dic_xls_marked_columns" ("column_name","column_type","target_schema") VALUES ('Phone2','string',0);
 INSERT INTO "dic_xls_marked_columns" ("column_name","column_type","target_schema") VALUES ('Phone3','string',0);
 INSERT INTO "dic_xls_marked_columns" ("column_name","column_type","target_schema") VALUES ('Phone4','string',0);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('100',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('103',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('104',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('106',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('108',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('118',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('161',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('163',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('165',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('209',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('218',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('219',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('224',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('225',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('226',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('229',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('233',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('237',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('241',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('251',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('253',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('259',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('264',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('265',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('268',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('269',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('273',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('283',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('284',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('285',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('61',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('71',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('76',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('96',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('Ecport_2022.03.23.xlsx',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('Eksportuj',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T-Mobile',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P13',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P15',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P20',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P25',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P28',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P33',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P34',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P35',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P39',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P3D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P3F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P44',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P46',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P51',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P5B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P5D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P6C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P75',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P79',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P7M',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P7Q',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P7S',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P84',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P8A',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P8G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P94',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P98',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P9C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P9G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P9H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33P9I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PB3',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PB8',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PBA',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PBB',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PBD',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PBE',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PBF',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PCA',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T33PCC',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P13',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P17',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P19',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P1F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P1H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P1K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P1N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P1P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P21',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P23',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P26',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P2B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P2C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P30',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P31',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P34',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P38',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P3K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P46',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P4E',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P4N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P4O',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P4P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P52',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P54',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P55',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P5D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P5D   ',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P60',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P61',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P63',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P66',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P69',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P6G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P70',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P73',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P74',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P76',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P78',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P79',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7M',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7O',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7R',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7S',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7T',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P7W',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P80',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P81',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P82',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P84',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P85',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P88',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P89',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P8H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P8I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P90',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P92',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P96',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P98',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P99',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9F ',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9L',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9O',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9S',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9U',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9W',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34P9X',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA0',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA1',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA2',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA3',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA4',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA6',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PA7',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAA',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAC',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAG',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAH',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAI',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAK',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAM',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PAN',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB0',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB0                       ',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB1',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB2',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB3',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB4',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB8',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PB9',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PBB',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PBD',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PBE',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC1',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC2',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC3',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC4',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC6',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC8',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PC9',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCA',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCC',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCE',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCF',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCG',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCI',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCJ',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCM',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCN',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCO',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T34PCR',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P10',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P11',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P12',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P14',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P16',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1A',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1F    ',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P1K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P21',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P23',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P25',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P27',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P28',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2A',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2E',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2J',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2L',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2M',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2R',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2T',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P2U',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P31',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P32',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3A',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3E',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3M',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3O',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3R',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3S',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P3U',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P43',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P46',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P48',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4E',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4J',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4L',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4O',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4P',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4T',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P4X',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P50',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P52',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P59',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5C',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5D',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5E',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5F',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5G',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5H',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5I',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5J',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5K',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P5N',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P60',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P62',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P63',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P6A',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P6B',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P6M',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P6S',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('T35P6U',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('Transport drogowy towarów',NULL,NULL);
+INSERT INTO "dim_campcd_affinity" ("campcd","kategoria","kod_kategorii") VALUES ('dummy',NULL,NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Oddzwonienie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany - brak potrzeby',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Odmowa rozmowy',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma nie istnieje',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Poczta głosowa',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brak osoby docelowej',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Pomyłka',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Korzysta już z factoringu',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('RODO',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już klientem BIBBY FS',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mieszkanie prywatne',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany - mają w firmie wdrożoną pracę zdalną',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie spełnia założen kampanii',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Korzysta już z podobnej usługi u konkurencji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany - "nie bo nie"',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY Enterprise Application Access',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma w likwidacji/ w trakcie zmian',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany - Brak potrzeby',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Zainteresowany',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Oddzownienie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada inny model BMW',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada już proponowany model BMW',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('KONTAKTwsprawieINNEJMARKI',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma w likwidacji/ upadłości/ w trakcie zmian',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już klientem Orange',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Przekroczony LIMIT PRÓB',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie spełnia założeń akcji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY LP',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma zawieszona/ w likwidacji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada już INNY model',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już sprzedają na allegro',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już Volvo',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('KONTAKT w sprawie INNEJ MARKI',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('JUŻ KTOŚ DZOWNIŁ w sprawie tej lub innej marki',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada już proponowany model',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada już PROPONOWANY model',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już klientem VFS',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Sekretariat odmawia przełączenia',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już auto tej marki',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już współpracują z inPost',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już współpracują z konkurencją',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mniej niż 200 paczek',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Korzysta z Allegro',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma w trakcie zmian',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Sprzedają na OLX, ALLEGRO, VINTED',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Duże gabaryty i palety',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już ktoś dzownił z InPost w sprawie Abonamentów',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Towary wykluczone z transportu ',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Dropshipping',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Korzysta z kart paliwowych konkurencji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brokerska obsługa',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już klientem Virgin',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już klientem tej sieci',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już dofinansowanie posiłków',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już opiekę medyczną w innej firmie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Współpracują już  z Luxmed',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mniej niż 100 zatrudnionych',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już benefit językowy w innej firmie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('KONTAKT w sprawie INNEJ MARKI ',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada już INNY model tej marki',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie wystawiają fv z terminem płatności powyżej 14 dni',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już Klientem Idea Bank',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma zawieszona',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już mają umowę z DHL',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Już zapisał się ',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już tę markę',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie jest właścicielem licznika',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Małe OSD',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Grupa taryfowa A/G',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Zbyt duże zużycie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brak osoby decyzyjnej - wynajem',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Oferta tylko na email',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest w Play',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brak kryteriów > 6 miesięcy',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Zainteresowany LP',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie spełnia kryteriów - ORANGE',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Posiada markę JEEP',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już pakiet w innej firmie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już Medicover',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już pakiet w innej firmie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już Medicover',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Umowa o zarządzanie PPK już zawarta',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Nie spełnia warunków',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brak kontaktu z osobą docelową',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Zainteresowany TRANSFER',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('BRAK OBOWIĄZKU PPK – MA PPE',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Niezainteresowany rozmową na temat PPK',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Ma już PPK w NN',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Sekretariat odmawia połączenia',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('W TRAKCIE ROZMÓW Z NN',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY PPK',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mała firma 20-49 zatrudnionych',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY - Firma będzie wdrażała PPK od Lipca 2020 - ZBIERA OFERTY',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mała firma będzie wdrażała PPK od kwietnia 2021',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma nie istnieje/ w likwidacji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Oddzwonienie - wstępnie zainteresowany',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Budżetówka będzie wdrażała PPK marzec-kwiecień 2021',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Brak osoby wyznaczonej do wprowadzenia PPK',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY - Budżetówka będzie wdrażała PPK od 2021 - ZBIERA OFERTY',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Inny termin ubezpieczenia',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma w likwidacji',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Jest już w PZU',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ODDZWONIENIE - WSTĘPNIE ZAINTERESOWANY',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('JUŻ KTOŚ DZWONIŁ',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Działaność zawieszona',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Dubel - supervisor',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Zainteresowany Transfer',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Korzysta już z kart paliwowych BP',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Interesują klierta ew. INNE MODELE VOLVO',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Wynajmują powierzchnię',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma nie istnieje ',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Za mała powierzchnia oświetleniowa < 200 m2',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Mają już oświetlenie LED',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY oświetleniem LED  - umówione spotkanie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY panelami PV  - umówione spotkanie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Oddzownienie - wyślij email',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Firma w likwidacji/ zawieszona',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('ZAINTERESOWANY oświetleniem LED i panelami PV  - umówione spotkanie',NULL);
+INSERT INTO "dim_call_code" ("call_code","clean_call_code") VALUES ('Są już klientem T-mobile',NULL);
 DROP INDEX IF EXISTS "ix_log_hist_index";
 CREATE INDEX IF NOT EXISTS "ix_log_hist_index" ON "log_hist" (
 	"id"
 );
+DROP INDEX IF EXISTS "idx_call_code";
+CREATE UNIQUE INDEX IF NOT EXISTS "idx_call_code" ON "dim_call_code" (
+	"call_code"	ASC
+);
+DROP INDEX IF EXISTS "idx_campcd_affinity";
+CREATE UNIQUE INDEX IF NOT EXISTS "idx_campcd_affinity" ON "dim_campcd_affinity" (
+	"campcd"	ASC
+);
+DROP VIEW IF EXISTS "v_fct_calls";
+CREATE VIEW v_fct_calls AS
+SELECT
+	ID,
+	RecordState,
+	LastCallCode,
+	LastTryTime,
+	TELEFON1,
+	TELEFON2,
+	TELEFON3,
+	TELEFON4,
+	"Source",
+	LastName,
+	FirstName,
+	CustomerBusiness_Id,
+	PKD,
+	OPIS,
+	Wojewodztwo,
+	ApartmentNumber,
+	HouseNumber,
+	ZipCode,
+	Street,
+	City,
+	CompanyName,
+	mrktcd,
+	fct_calls.campcd,
+	DataGodzinaKontaktu,
+	EmailPotwierdzony,
+	ImieNazwiskoPotwierdzone,
+	MiastoPotwierdzone,
+	WybranyDealer,
+	TelefonPotwierdzony,
+	NazwiskoPotwierdzone,
+	ImiePotwierdzone,
+	ImportId,
+	ImportCreatedOn,
+	dim_call_code.clean_call_code,
+	dim_campcd_affinity.kategoria,
+	dim_campcd_affinity.kod_kategorii
+FROM fct_calls
+LEFT JOIN dim_call_code
+ON fct_calls.LastCallCode = dim_call_code.call_code
+LEFT JOIN dim_campcd_affinity
+ON fct_calls.campcd = dim_campcd_affinity.campcd;
 DROP VIEW IF EXISTS "v_phones_max_last_try_time";
 CREATE VIEW v_phones_max_last_try_time as
-with t1 as
+WITH t1 AS
 (
-select TELEFON1, max(LastTryTime) as max_LastTryTime, min(ID) as ID
-from fct_calls as f1
-where f1.LastTryTime is  not null
-group by TELEFON1
+SELECT
+	TELEFON1,
+	max(LastTryTime) as max_LastTryTime,
+	min(ID) AS ID
+FROM
+	fct_calls
+WHERE
+	LastTryTime IS NOT NULL
+GROUP BY
+	TELEFON1
 )
-select * from fct_calls, t1
-where fct_calls.ID = t1.ID;
-DROP VIEW IF EXISTS "v_fct_calls";
-CREATE VIEW v_fct_calls as
-
-select * from fct_calls;
+SELECT
+	t0.ID,
+	t0.RecordState,
+	t0.LastCallCode,
+	t0.LastTryTime,
+	t0.TELEFON1,
+	t0.TELEFON2,
+	t0.TELEFON3,
+	t0.TELEFON4,
+	t0.Source,
+	t0.LastName,
+	t0.FirstName,
+	t0.CustomerBusiness_Id,
+	t0.PKD,
+	t0.OPIS,
+	t0.Wojewodztwo,
+	t0.ApartmentNumber,
+	t0.HouseNumber,
+	t0.ZipCode,
+	t0.Street,
+	t0.City,
+	t0.CompanyName,
+	t0.mrktcd,
+	t0.campcd,
+	t0.DataGodzinaKontaktu,
+	t0.EmailPotwierdzony,
+	t0.ImieNazwiskoPotwierdzone,
+	t0.MiastoPotwierdzone,
+	t0.WybranyDealer,
+	t0.TelefonPotwierdzony,
+	t0.NazwiskoPotwierdzone,
+	t0.ImiePotwierdzone,
+	t0.ImportId,
+	t0.ImportCreatedOn,
+	dim_call_code.clean_call_code,
+	dim_campcd_affinity.kategoria,
+	dim_campcd_affinity.kod_kategorii
+FROM fct_calls AS t0
+INNER JOIN t1
+	ON t0.ID = t1.ID
+LEFT JOIN dim_call_code
+	ON t0.LastCallCode = dim_call_code.call_code
+LEFT JOIN dim_campcd_affinity
+	ON t0.campcd = dim_campcd_affinity.campcd;
 COMMIT;

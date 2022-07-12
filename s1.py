@@ -109,6 +109,8 @@ try:
             print('user chose:',proceed)
             if proceed != "y":
                 break;
+        else:
+            print('The file being processed contain all the columns of the pattern :)')
         
     
         #create main dataframe with data structure redy to load
@@ -153,7 +155,9 @@ try:
         starttm = time.time()
         df_f1_filtered.to_sql('fct_calls', conn, if_exists='append', index=False, chunksize = 10000)
         endtm = time.time()
+        print('\n' * 1)
         print("    df1_to_sql: " + uf_files_2_proc[index] + " - " + str(timedelta(seconds = endtm - starttm))) 
+        print('\n' * 1)
         conn.commit()
         
         
@@ -165,6 +169,36 @@ try:
         cur.execute(sqlite_update_query, data)
         conn.commit()
         cur.close()
+        
+        #insert new campcd into dim_campcd_affinity table
+        df_unq_campcd = pd.read_sql('SELECT DISTINCT campcd FROM fct_calls', conn)
+        df_camcd_affinity = pd.read_sql('SELECT DISTINCT campcd FROM dim_campcd_affinity', conn)
+        q_unq_campcd = """
+                        SELECT d1.campcd 
+                    	FROM df_unq_campcd d1
+                    	LEFT JOIN df_camcd_affinity dca
+                    	ON d1.campcd = dca.campcd
+                    	WHERE dca.campcd IS NULL
+                    ;"""
+        df_load_campcd_affinity = ps.sqldf(q_unq_campcd, locals())
+        df_load_campcd_affinity.to_sql('dim_campcd_affinity', conn, if_exists='append', index=False, chunksize = 10000)
+        print("    Number of inserted unique 'campcd' values:", len(df_load_campcd_affinity))
+        
+        #insert new LastCallCode into dim_camll_code table
+        df_unq_last_call_code = pd.read_sql('SELECT DISTINCT LastCallCode FROM fct_calls', conn)
+        df_call_code = pd.read_sql('SELECT DISTINCT call_code FROM dim_call_code', conn)
+        q_unq_call_code = """
+                        SELECT d1.LastCallCode as call_code
+                    	FROM df_unq_last_call_code d1
+                    	LEFT JOIN df_call_code d2
+                    	ON d1.LastCallCode = d2.call_code
+                    	WHERE d2.call_code IS NULL
+                            AND d1.LastCallCode IS NOT NULL
+                    ;"""
+        df_load_call_code = ps.sqldf(q_unq_call_code, locals())
+        df_load_call_code.to_sql('dim_call_code', conn, if_exists='append', index=False, chunksize = 10000)
+        print("    Number of inserted unique 'LastCallCod'e values:", len(df_load_call_code))
+        
         
         print('\n' * 1)
         print('Number of inserted rows:',len(df_f1_filtered))

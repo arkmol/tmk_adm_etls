@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:\Users\Admin\Desktop\tmk_adm\dbs\tmk_adm_db.sqlite" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="7831"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,14:maindic_affinities"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="dic_affinities" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="132"/><column index="2" value="93"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="dim_call_code" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="116"/><column index="2" value="110"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="dim_campcd_affinity" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="170"/><column index="2" value="70"/><column index="3" value="96"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="fct_calls" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="107"/><column index="3" value="90"/><column index="4" value="205"/><column index="5" value="175"/><column index="6" value="70"/><column index="7" value="70"/><column index="8" value="70"/><column index="9" value="70"/><column index="10" value="125"/><column index="11" value="71"/><column index="12" value="71"/><column index="13" value="147"/><column index="14" value="51"/><column index="15" value="300"/><column index="17" value="128"/><column index="18" value="97"/><column index="19" value="58"/><column index="20" value="294"/><column index="21" value="145"/><column index="22" value="300"/><column index="23" value="53"/><column index="24" value="57"/><column index="25" value="148"/><column index="26" value="179"/><column index="27" value="257"/><column index="28" value="140"/><column index="29" value="109"/><column index="30" value="144"/><column index="31" value="156"/><column index="32" value="124"/><column index="33" value="65"/><column index="34" value="175"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="hist_fct_calls" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="40"/><column index="3" value="81"/><column index="4" value="85"/><column index="5" value="90"/><column index="6" value="90"/><column index="7" value="86"/><column index="8" value="67"/><column index="9" value="67"/><column index="10" value="67"/><column index="11" value="67"/><column index="12" value="53"/><column index="13" value="71"/><column index="14" value="71"/><column index="15" value="147"/><column index="16" value="40"/><column index="17" value="40"/><column index="19" value="128"/><column index="20" value="97"/><column index="21" value="58"/><column index="22" value="50"/><column index="23" value="40"/><column index="24" value="102"/><column index="25" value="53"/><column index="26" value="57"/><column index="27" value="148"/><column index="28" value="129"/><column index="29" value="183"/><column index="30" value="140"/><column index="31" value="109"/><column index="32" value="144"/><column index="33" value="156"/><column index="34" value="124"/><column index="35" value="65"/><column index="36" value="121"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="log_hist" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="461"/><column index="3" value="97"/><column index="4" value="175"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="sqlite_sequence" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="53"/><column index="2" value="49"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="v_phones_max_last_try_time" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="91"/><column index="2" value="91"/><column index="3" value="91"/><column index="4" value="91"/><column index="5" value="91"/><column index="6" value="91"/><column index="7" value="91"/><column index="8" value="91"/><column index="9" value="91"/><column index="10" value="91"/><column index="11" value="91"/><column index="12" value="147"/><column index="13" value="91"/><column index="14" value="91"/><column index="16" value="128"/><column index="17" value="97"/><column index="18" value="91"/><column index="19" value="91"/><column index="20" value="91"/><column index="21" value="102"/><column index="22" value="91"/><column index="23" value="91"/><column index="24" value="148"/><column index="25" value="129"/><column index="26" value="183"/><column index="27" value="140"/><column index="28" value="109"/><column index="29" value="144"/><column index="30" value="156"/><column index="31" value="124"/><column index="32" value="91"/><column index="33" value="121"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">select distinct fc.LastCallCode
+from fct_calls fc
+left join dim_call_code dcc
+on fc.LastCallcode = dcc.call_code
+where dcc.call_code is null</sql><sql name="SQL 2">CREATE TRIGGER fct_calls_after_insert 
+  AFTER INSERT ON fct_calls
+
+BEGIN	
+	INSERT INTO dim_campcd_affinity(
+		campcd
+	)
+	SELECT DISTINCT
+		fc.campcd 
+	FROM fct_calls fc
+	LEFT JOIN dim_campcd_affinity dca
+	ON fc.campcd = dca.campcd
+	WHERE fc.campcd = NEW.campcd
+		AND dca.campcd IS NULL
+	;
+	
+	INSERT INTO dim_call_code(
+		call_code
+	)
+	SELECT DISTINCT 
+		fc.LastCallCode
+	FROM fct_calls fc
+	LEFT JOIN dim_call_code dcc
+	ON fc.LastCallcode = dcc.call_code
+	WHERE fc.LastCallcode = NEW.LastCallcode
+		AND dcc.call_code IS NULL
+	;
+END</sql><sql name="SQL 4">delete from fct_calls where logId&gt;=113;
+delete from hist_fct_calls;
+delete from log_hist where ID&gt;=113;
+delete from dim_call_code;
+delete from dim_campcd_affinity;</sql><sql name="SQL 5">	INSERT INTO dim_campcd_affinity(
+		campcd
+	)
+	SELECT DISTINCT
+		fc.campcd 
+	FROM fct_calls fc
+	LEFT JOIN dim_campcd_affinity dca
+	ON fc.campcd = dca.campcd
+	WHERE dca.campcd IS NULL
+		AND fc.campcd IS NOT NULL
+	
+	;
+	
+	INSERT INTO dim_call_code(
+		call_code
+	)
+	SELECT DISTINCT 
+		fc.LastCallCode
+	FROM fct_calls fc
+	LEFT JOIN dim_call_code dcc
+	ON fc.LastCallcode = dcc.call_code
+	WHERE dcc.call_code IS NULL
+		AND fc.LastCallCode IS NOT NULL
+	;</sql><sql name="SQL 6">CREATE VIEW v_fct_calls AS
+SELECT
+	ID,
+	RecordState,
+	LastCallCode,
+	LastTryTime,
+	TELEFON1,
+	TELEFON2,
+	TELEFON3,
+	TELEFON4,
+	&quot;Source&quot;,
+	LastName,
+	FirstName,
+	CustomerBusiness_Id,
+	PKD,
+	OPIS,
+	Wojewodztwo,
+	ApartmentNumber,
+	HouseNumber,
+	ZipCode,
+	Street,
+	City,
+	CompanyName,
+	mrktcd,
+	fct_calls.campcd,
+	DataGodzinaKontaktu,
+	EmailPotwierdzony,
+	ImieNazwiskoPotwierdzone,
+	MiastoPotwierdzone,
+	WybranyDealer,
+	TelefonPotwierdzony,
+	NazwiskoPotwierdzone,
+	ImiePotwierdzone,
+	ImportId,
+	ImportCreatedOn,
+	dim_call_code.clean_call_code,
+	dim_campcd_affinity.kategoria,
+	dim_campcd_affinity.kod_kategorii
+FROM fct_calls
+LEFT JOIN dim_call_code
+ON fct_calls.LastCallCode = dim_call_code.call_code
+LEFT JOIN dim_campcd_affinity
+ON fct_calls.campcd = dim_campcd_affinity.campcd</sql><sql name="SQL 7">CREATE VIEW v_phones_max_last_try_time as
+WITH t1 AS
+(
+SELECT
+	TELEFON1,
+	max(LastTryTime) as max_LastTryTime,
+	min(ID) AS ID
+FROM
+	fct_calls
+WHERE
+	LastTryTime IS NOT NULL
+GROUP BY
+	TELEFON1
+)
+SELECT
+	t0.ID,
+	t0.RecordState,
+	t0.LastCallCode,
+	t0.LastTryTime,
+	t0.TELEFON1,
+	t0.TELEFON2,
+	t0.TELEFON3,
+	t0.TELEFON4,
+	t0.Source,
+	t0.LastName,
+	t0.FirstName,
+	t0.CustomerBusiness_Id,
+	t0.PKD,
+	t0.OPIS,
+	t0.Wojewodztwo,
+	t0.ApartmentNumber,
+	t0.HouseNumber,
+	t0.ZipCode,
+	t0.Street,
+	t0.City,
+	t0.CompanyName,
+	t0.mrktcd,
+	t0.campcd,
+	t0.DataGodzinaKontaktu,
+	t0.EmailPotwierdzony,
+	t0.ImieNazwiskoPotwierdzone,
+	t0.MiastoPotwierdzone,
+	t0.WybranyDealer,
+	t0.TelefonPotwierdzony,
+	t0.NazwiskoPotwierdzone,
+	t0.ImiePotwierdzone,
+	t0.ImportId,
+	t0.ImportCreatedOn,
+	dim_call_code.clean_call_code,
+	dim_campcd_affinity.kategoria,
+	dim_campcd_affinity.kod_kategorii
+FROM fct_calls AS t0
+INNER JOIN t1
+	ON t0.ID = t1.ID
+LEFT JOIN dim_call_code
+	ON t0.LastCallCode = dim_call_code.call_code
+LEFT JOIN dim_campcd_affinity
+	ON t0.campcd = dim_campcd_affinity.campcd</sql><current_tab id="5"/></tab_sql></sqlb_project>
